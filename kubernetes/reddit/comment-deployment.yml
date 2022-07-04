@@ -2,18 +2,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: post-db-deployment
+  name: comment-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: post-db
+      app: comment
   template:
     metadata:
-      name: post-db
+      name: comment
       labels:
-        app: post-db
+        app: comment
     spec:
       containers:
-      - image: mongo:3.2
-        name: post-db
+      - image: frask192/comment
+        name: comment
