@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongo-pv
+spec:
+  capacity:
+    storage: 4Gi
+  accessModes:
+    - ReadWriteOnce
+  csi:
+    driver: disk-csi-driver.mks.ycloud.io
+    fsType: ext4
+    volumeHandle: epdbafg877v9d92j2bcd
+
+# команда для создания в яндексе yc compute disk create  --name k8s  --size 4  --description "disk for k8s" --zone ru-central1-b
