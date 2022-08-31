@@ -23,12 +23,14 @@ spec:
         comment-db: "true"
         post-db: "true"
     spec:
-        containers:
-        - image: mongo:3.2
-          name: mongo
-          volumeMounts: # Точка монтирования в контейнере (не в POD-е)
-          - name: mongo-persistent-storage
-            mountPath: /data/db
-        volumes: # Ассоциированные с POD-ом Volume-ы
+      containers:
+      - image: mongo:3.2
+        name: mongo
+        volumeMounts: # Точка монтирования в контейнере (не в POD-е)
         - name: mongo-persistent-storage
-          emptyDir: {}
+          mountPath: /data/db
+      volumes: # Ассоциированные с POD-ом Volume-ы
+      - name: mongo-persistent-storage
+        # emptyDir: {} #При создании пода с такимтипом просто создается пустой docker volume
+        persistentVolumeClaim:
+          claimName: mongo-pvc
