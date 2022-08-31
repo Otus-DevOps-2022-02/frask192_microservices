@@ -39,3 +39,9 @@ yc compute instance create   --name docker-host   --zone ru-central1-a   --netwo
 ## HW 17 logging EFK Zipkin
 
 yc compute instance create   --name logging   --zone ru-central1-a   --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4   --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-1804-lts,size=15   --ssh-key ~/.ssh/id_rsa.pub  --memory=4G --cores=2 --core-fraction=20 --platform=standard-v3 --preemptible=true
+
+#########################################################################################
+## HW 18 k8s-1
+
+при помощи терраформ создал машины для кубера
+дальше следовать командам commands_for_install.txt для установки и запуска кубера
