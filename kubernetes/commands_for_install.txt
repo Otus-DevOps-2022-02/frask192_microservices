@@ -30,3 +30,5 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 
 установка калико
 calico - https://www.golinuxcloud.com/calico-kubernetes/
+
+kubectl apply -f calico.yaml

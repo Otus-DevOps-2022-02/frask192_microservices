@@ -45,3 +45,36 @@ yc compute instance create   --name logging   --zone ru-central1-a   --network-i
 
 при помощи терраформ создал машины для кубера
 дальше следовать командам commands_for_install.txt для установки и запуска кубера
+
+#########################################################################################
+## HW 18 k8s-2
+
+скачал и поднял миникуб
+https://kubernetes.io/docs/tasks/tools/install-minikube/
+
+убежились, что kubectl смотрит на наш миникуб - kubectl config current-context
+создали работчие манифесты reddit приложений для кубернетиса и запуслили их в миникубе - kubectl apply -f ./kubernetes/reddit (прочитать все манифесты) или на конкретный файл kubectl apply -f ./kubernetes/reddit/ui-deployment.yml
+
+пробросили порт ui и убедились что приложение работает - kubectl get pods --selector component=ui kubectl port-forward 8080:9292
+
+для связи компонентов между собой и для пбликации наружу исрользуются манифесты, описанные как <appname>-service.yaml
+
+для публикации наружу можно указать конкретный порт
+spec:
+  type: NodePort
+  ports:
+  - nodePort: 32092
+    port: 9292
+    protocol: TCP
+    targetPort: 9292
+
+а можно указать просто 
+spec:
+  type: NodePort
+  ports:
+  - port: 9292
+    protocol: TCP
+    targetPort: 9292
+и будет присвоен порт из диапазано 30000-32767
+
+создавние своего namespace описано в dev-namespace.yml
